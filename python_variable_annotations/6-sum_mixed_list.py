@@ -7,4 +7,4 @@ from typing import List
 def sum_mixed_list(mxd_lst: List[int, float]) -> float:
     """Function"""
 
-    return sum(input_list)
+    return sum(mxd_lst)
