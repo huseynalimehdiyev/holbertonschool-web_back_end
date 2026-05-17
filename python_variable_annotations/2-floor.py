@@ -4,7 +4,7 @@
 import math
 
 
-def floor(n: float) -> int:
+def floor(n: float) -> float:
     """Function"""
 
     return math.flor(n)
