@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-This module provides a function that safely gets a value from a dictionary.
-"""
+"""Module"""
 
 from typing import TypeVar, Mapping, Optional, Any
 
