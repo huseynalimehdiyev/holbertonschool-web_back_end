@@ -11,7 +11,7 @@ def safely_get_value(
     dct: Mapping,
     key: Any,
     default: Optional[T] = None
-) -> Union[Any,T]:
+) -> Union[Any, T]:
     """Function"""
 
     if key in dct:
