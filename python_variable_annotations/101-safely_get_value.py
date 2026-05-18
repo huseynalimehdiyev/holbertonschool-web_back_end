@@ -13,7 +13,7 @@ def safely_get_value(
     dct: Mapping,
     key: Any,
     default: Optional[T] = None
-) -> Any[T]qw:
+) -> Any[T]:
     """Function"""
 
     if key in dct:
