@@ -3,7 +3,7 @@
 This module provides a function that safely gets a value from a dictionary.
 """
 
-from typing import TypeVar, Mapping, Optional
+from typing import TypeVar, Mapping, Optional, Any
 
 
 T = TypeVar('T')
