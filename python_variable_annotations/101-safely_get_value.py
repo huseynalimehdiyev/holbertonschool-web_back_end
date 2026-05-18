@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Module"""
 
-from typing import TypeVar, Mapping, Optional, Any
+from typing import Union, TypeVar, Mapping, Optional, Any
 
 
 T = TypeVar('T')
@@ -11,7 +11,7 @@ def safely_get_value(
     dct: Mapping,
     key: Any,
     default: Optional[T] = None
-) -> Any[T]:
+) -> Union[Any,T]:
     """Function"""
 
     if key in dct:
