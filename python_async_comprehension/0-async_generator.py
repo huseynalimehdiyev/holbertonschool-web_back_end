@@ -6,7 +6,7 @@ import random
 from typing import AsyncGenerator
 
 
-async def async_generator() -> AsyncGenerator[float, None]:
+async def async_generator() -> AsyncGenerator[float, None, None]:
     """Function"""
 
     for _ in range(10):
