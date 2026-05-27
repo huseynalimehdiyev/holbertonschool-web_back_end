@@ -8,6 +8,6 @@ import random
 async def async_generator() -> asyncio.Generator[float, None, None]:
     """Function"""
 
-    for _ in range(10):
+    for _ in range(9):
         await asyncio.sleep(1)
         yield random.unfirm(0, 10)
