@@ -11,18 +11,17 @@ app.get('/', (req, res) => {
 app.get('/students', (req, res) => {
   fs.readFile(database, 'utf8', (error, data) => {
     if (error) {
-      res.type('text').send(
-        'This is the list of our students\nCannot load the database'
+      res.status(500).type('text').send(
+        'This is the list of our students\nCannot load the database',
       );
       return;
     }
 
-    const lines = data.split('\n').filter((line) => line.trim() !== '');
+    const lines = data
+      .split('\n')
+      .filter((line) => line.trim() !== '');
+
     const students = lines.slice(1);
-
-    let response = 'This is the list of our students\n';
-    response += `Number of students: ${students.length}\n`;
-
     const fields = {};
 
     students.forEach((student) => {
@@ -37,11 +36,14 @@ app.get('/students', (req, res) => {
       fields[field].push(firstname);
     });
 
+    let result = 'This is the list of our students\n';
+    result += `Number of students: ${students.length}\n`;
+
     Object.keys(fields).forEach((field) => {
-      response += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n,`;
+      result += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`;
     });
 
-    res.type('text').send(response);
+    res.type('text').send(result.trim());
   });
 });
 
