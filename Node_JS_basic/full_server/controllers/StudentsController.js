@@ -6,12 +6,16 @@ class StudentsController {
 
     readDatabase(database)
       .then((fields) => {
-        const fieldNames = Object.keys(fields).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+        const fieldNames = Object.keys(fields).sort(
+          (a, b) => a.toLowerCase().localeCompare(b.toLowerCase()),
+        );
 
         const result = ['This is the list of our students'];
 
         fieldNames.forEach((field) => {
-          result.push(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`);
+          result.push(
+            `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`,
+          );
         });
 
         response.status(200).send(result.join('\n'));
