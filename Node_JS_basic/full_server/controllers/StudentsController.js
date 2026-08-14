@@ -5,18 +5,16 @@ class StudentsController {
     const database = process.argv[2];
 
     readDatabase(database)
-      .then((students) => {
-        let result = 'This is the list of our students\n';
+      .then((fields) => {
+        const fieldNames = Object.keys(fields).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
-        const fields = Object.keys(students).sort((a, b) =>
-          a.toLowerCase().localeCompare(b.toLowerCase())
-        );
+        const result = ['This is the list of our students'];
 
-        fields.forEach((field) => {
-          result += `Number of students in ${field}: ${students[field].length}. List: ${students[field].join(', ')}\n`;
+        fieldNames.forEach((field) => {
+          result.push(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`);
         });
 
-        response.status(200).send(result);
+        response.status(200).send(result.join('\n'));
       })
       .catch(() => {
         response.status(500).send('Cannot load the database');
@@ -24,7 +22,6 @@ class StudentsController {
   }
 
   static getAllStudentsByMajor(request, response) {
-    const database = process.argv[2];
     const { major } = request.params;
 
     if (major !== 'CS' && major !== 'SWE') {
@@ -32,11 +29,11 @@ class StudentsController {
       return;
     }
 
+    const database = process.argv[2];
+
     readDatabase(database)
-      .then((students) => {
-        response
-          .status(200)
-          .send(`List: ${students[major].join(', ')}`);
+      .then((fields) => {
+        response.status(200).send(`List: ${fields[major].join(', ')}`);
       })
       .catch(() => {
         response.status(500).send('Cannot load the database');
