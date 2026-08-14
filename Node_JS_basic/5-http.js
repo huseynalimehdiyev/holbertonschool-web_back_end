@@ -14,11 +14,17 @@ const app = http.createServer((req, res) => {
 
   if (req.url === '/students') {
     fs.readFile(database, 'utf8', (error, data) => {
-      if (error) {
-        res.statusCode = 500;
-        res.end('Cannot load the database');
-        return;
-      }
+      if (req.url === '/students') {
+  fs.readFile(database, 'utf8', (error, data) => {
+    if (error) {
+      res.statusCode = 500;
+      res.end('This is the list of our students\nCannot load the database');
+      return;
+    }
+
+    // ...
+  });
+}
 
       const lines = data
         .split('\n')
